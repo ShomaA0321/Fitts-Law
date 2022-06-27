@@ -31,8 +31,8 @@ namespace Law {
             if (tasks.TryPop(out task)) {
                 count = 0;
                 int width = task.Item2;
-                int xL = 960 - task.Item1 - width;
-                int xR = 960 + task.Item1;
+                int xL = 960 - task.Item1 - width / 2;
+                int xR = 960 + task.Item1 - width / 2;
                 labelL.Width = width;
                 labelR.Width = width;
                 labelL.Location = new(xL, 12);
