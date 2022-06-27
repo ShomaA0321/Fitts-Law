@@ -18,9 +18,10 @@ namespace Law {
             this.results = results;
             tasks = new(
                 new (int, int)[] {
-                    (200, 20), (400, 20), (800, 20),
-                    (200, 40), (400, 40), (800, 40),
-                    (200, 80), (400, 80), (800, 80),
+                    (620, 20), (1240, 40), //D/W+1=32
+                    (600, 40), (1200, 80), //D/W+1=16
+                    (280, 40), (560, 80), //D/W+1=8
+                    (240, 80), (480, 160), //D/W+1=4
                 }.OrderBy(_ => Guid.NewGuid()));
             sw = Stopwatch.StartNew();
 
@@ -31,8 +32,8 @@ namespace Law {
             if (tasks.TryPop(out task)) {
                 count = 0;
                 int width = task.Item2;
-                int xL = 960 - task.Item1 - width / 2;
-                int xR = 960 + task.Item1 - width / 2;
+                int xL = 960 - task.Item1 / 2 - width / 2;
+                int xR = 960 + task.Item1 / 2 - width / 2;
                 labelL.Width = width;
                 labelR.Width = width;
                 labelL.Location = new(xL, 12);

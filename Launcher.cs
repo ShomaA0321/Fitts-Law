@@ -23,10 +23,10 @@ namespace Law {
             };
 
             if (sfd.ShowDialog() == DialogResult.OK) {
-                using StreamWriter sw = new StreamWriter(sfd.FileName);
-                sw.WriteLine("Distance, Area, Time");
+                using StreamWriter sw = new(sfd.FileName);
+                sw.WriteLine("Distance, Area, Log_2(D/A+1), Time");
                 foreach ((int, int, long) iil in results.OrderBy(o => o.Item3).OrderBy(o => o.Item2).OrderBy(o => o.Item1))
-                    sw.WriteLine($"{iil.Item1}, {iil.Item2}, {iil.Item3}");
+                    sw.WriteLine($"{iil.Item1}, {iil.Item2}, {(int)Math.Log2(iil.Item1 / iil.Item2 + 1)}, {iil.Item3}");
             }
         }
     }
